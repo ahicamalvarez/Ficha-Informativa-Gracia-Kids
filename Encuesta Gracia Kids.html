@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Informativa - Gracia Kids</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;          /* Púrpura amigable de 'Gracia' */
+            --primary-light: #f1f0ff;    /* Fondo suave púrpura */
+            --accent: #ffb142;           /* Amarillo/Naranja de 'Kids' */
+            --success: #2ed573;          /* Verde de éxito */
+            --success-light: #e8fbf0;
+            --text: #2f3542;
+            --text-muted: #747d8c;
+            --bg: #fdfaf4;               /* Crema cálido del fondo de la imagen */
+            --border: #f1f2f6;
+            --card: #ffffff;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0; padding: 20px;
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+        }
+        .container {
+            background: var(--card); width: 100%; max-width: 650px;
+            padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(108, 92, 231, 0.05);
+            overflow: hidden; border: 1px solid #f6f1e5;
+        }
+        
+        /* Imagen de Cabecera */
+        .banner-container {
+            margin: -30px -30px 25px -30px;
+            text-align: center;
+            background-color: #fef9eb; 
+            border-bottom: 2px solid #f7f1e1;
+        }
+        .banner-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 230px;
+            object-fit: contain;
+        }
+
+        .header { text-align: center; margin-bottom: 25px; padding: 0 10px; }
+        .header h1 { color: var(--primary); margin: 0 0 10px 0; font-size: 24px; font-weight: 800; }
+        .verse { font-style: italic; color: #475569; font-size: 14px; margin: 15px 0; background: #fff9e6; padding: 12px; border-radius: 8px; line-height: 1.4; border-left: 4px solid var(--accent); }
+        
+        /* Barra de Progreso */
+        .progress-container { background: #f1f2f6; height: 8px; border-radius: 4px; margin-bottom: 25px; position: relative; }
+        .progress-bar { background: linear-gradient(90deg, var(--primary), var(--accent)); width: 0%; height: 100%; border-radius: 4px; transition: width 0.3s ease; }
+        .step-counter { text-align: right; font-size: 12px; color: var(--text-muted); font-weight: bold; margin-top: 5px; }
+        
+        /* Pasos del Formulario */
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        h3 { border-left: 4px solid var(--primary); padding-left: 10px; margin-bottom: 20px; color: var(--primary); font-size: 18px; }
+        
+        .form-group { margin-bottom: 18px; }
+        .conditional-group { display: none; background: #fafafa; padding: 12px; border-left: 3px solid var(--accent); border-radius: 4px; margin-top: 8px; animation: slideDown 0.2s ease; }
+        
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 14px; color: #57606f; }
+        input[type="text"], input[type="date"], input[type="number"], input[type="email"], textarea, select {
+            width: 100%; padding: 11px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; transition: all 0.2s; background-color: #fdfdfd;
+        }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--primary); background-color: #ffffff; box-shadow: 0 0 0 3px var(--primary-light); }
+        
+        .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+        .radio-item, .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; color: #57606f; }
+        .radio-item input, .checkbox-item input { width: 18px; height: 18px; cursor: pointer; margin: 0; accent-color: var(--primary); }
+        
+        /* Botonera */
+        .buttons-nav { display: flex; justify-content: space-between; margin-top: 25px; gap: 12px; }
+        button { padding: 12px 24px; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; }
+        .btn-next { background: var(--primary); color: white; flex-grow: 1; box-shadow: 0 4px 6px rgba(108, 92, 231, 0.2); }
+        .btn-next:hover { background: #5b4cd8; transform: translateY(-1px); }
+        .btn-prev { background: #e4e7eb; color: #57606f; }
+        .btn-prev:hover { background: #cbd1d8; }
+        button:disabled { background: #e4e7eb; cursor: not-allowed; color: #a4b0be; transform: none; box-shadow: none; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Contenedor del Banner de Imagen -->
+    <div class="banner-container">
+        <img src="WhatsApp Image 2026-06-11 at 15.43.39.jpeg" alt="Gracia Kids Banner" class="banner-img">
+    </div>
+
+    <!-- Pantalla Inicial de Bienvenida -->
+    <div id="intro-screen">
+        <div class="header">
+            <h1>FICHA INFORMATIVA</h1>
+            <p style="color: #475569; line-height: 1.5; font-size: 14px;">Queridos padres: Damos gracias a Dios por permitirnos acompañar a sus hijos en su crecimiento espiritual. Deseamos conocerlos mejor para servirles con amor, enseñarles la Palabra de Dios y orar por sus familias.</p>
+            <p style="font-size: 12px; color: var(--text-muted);">Esta versión optimizada toma menos de 5 minutos en completarse. Toda la información es de uso estrictamente confidencial.</p>
+            <button onclick="startSurvey()" class="btn-next" style="margin-top: 15px; padding: 14px;">Comenzar Ficha</button>
+        </div>
+    </div>
+
+    <!-- Formulario Dinámico Reducido (6 Pasos Totales) -->
+    <form id="megaForm" style="display: none;" onsubmit="return false;">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="step-counter" id="stepCounter">Paso 1 de 6</div>
+        </div>
+
+        <!-- PASO 1: DATOS DEL NIÑO Y EDUCACIÓN -->
+        <div class="step active">
+            <h3>Paso 1: Datos Generales del Niño(a)</h3>
+            <div class="form-group"><label>Nombre completo del niño(a) *</label><input type="text" name="Nino_Nombre" required></div>
+            <div class="form-group" style="display: flex; gap: 10px;">
+                <div style="flex: 1;"><label>Fecha de nacimiento *</label><input type="date" name="Nino_FechaNac" required></div>
+                <div style="width: 80px;"><label>Edad *</label><input type="number" name="Nino_Edad" required min="0" max="17"></div>
+            </div>
+            <div class="form-group">
+                <label>Sexo *</label>
+                <div class="radio-group" style="flex-direction: row; gap: 20px;">
+                    <label class="radio-item"><input type="radio" name="Nino_Sexo" value="Masculino" required> Masculino</label>
+                    <label class="radio-item"><input type="radio" name="Nino_Sexo" value="Femenino"> Femenino</label>
+                </div>
+            </div>
+            <div class="form-group"><label>Grado escolar o nivel *</label><input type="text" name="Nino_Grado" required placeholder="Ej: 1er Grado Primaria, Inicial 4 años"></div>
+            
+            <div class="form-group">
+                <label>¿Tiene hermanos en el ministerio?</label>
+                <div class="radio-group" style="flex-direction: row; gap: 20px;">
+                    <label class="radio-item"><input type="radio" name="Nino_Hermanos" value="Sí" onclick="toggleGroup('hermanos_box', true)"> Sí</label>
+                    <label class="radio-item"><input type="radio" name="Nino_Hermanos" value="No" checked onclick="toggleGroup('hermanos_box', false)"> No</label>
+                </div>
+                <div id="hermanos_box" class="conditional-group">
+                    <label>Indique el nombre y edad de los hermanos:</label>
+                    <input type="text" name="Nino_HermanosDetalle" placeholder="Ej: Mateo (8) y Sofía (5)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Modalidad de educación *</label>
+                <select name="Edu_Tipo" required onchange="checkEdu(this)">
+                    <option value="Colegio presencial">Colegio presencial</option>
+                    <option value="Homeschool (educación en casa)">Homeschool (educación en casa)</option>
+                    <option value="Modalidad híbrida">Modalidad híbrida</option>
+                </select>
+            </div>
+            <div id="colegio_box" class="form-group">
+                <label>Nombre de la institución y Distrito donde se ubica:</label>
+                <input type="text" name="Edu_Institucion_Distrito" placeholder="Ej: Colegio San José - Chorrillos">
+            </div>
+            <div class="form-group"><label>¿Algún aspecto académico o de aprendizaje que debamos conocer?</label><textarea name="Edu_Aspecto" rows="2" placeholder="Opcional"></textarea></div>
+        </div>
+
+        <!-- PASO 2: PADRES Y CONTACTO -->
+        <div class="step">
+            <h3>Paso 2: Datos de los Padres y Contacto</h3>
+            <div class="form-group"><label>Nombre completo de la Madre y Teléfono *</label><input type="text" name="Madre_Info" required placeholder="Ej: María Rojas - 999888777"></div>
+            <div class="form-group"><label>Nombre completo del Padre y Teléfono *</label><input type="text" name="Padre_Info" required placeholder="Ej: Juan Pérez - 999555444"></div>
+            <div class="form-group"><label>Correo electrónico principal *</label><input type="email" name="Email" required></div>
+            <div class="form-group"><label>Dirección de residencia completa (Incluir Distrito y Referencia) *</label><textarea name="Direccion_Completa" rows="2" required placeholder="Ej: Av. Principal 123, Dpto 402 - Chorrillos (Frente al parque)"></textarea></div>
+            <div class="form-group"><label>¿Quiénes están autorizados normalmente para traer y recoger al niño(a)? *</label><input type="text" name="Recojo_Autorizados" required placeholder="Ej: Ambos padres / Abuela paterna (Elena Ramos)"></textarea></div>
+        </div>
+
+        <!-- PASO 3: SALUD Y EMERGENCIAS -->
+        <div class="step">
+            <h3>Paso 3: Información de Salud</h3>
+            
+            <div class="form-group">
+                <label>¿Tiene alguna alergia o restricción alimentaria?</label>
+                <div class="radio-group" style="flex-direction: row; gap: 20px;">
+                    <label class="radio-item"><input type="radio" name="Salud_Alergia_Restriccion" value="Sí" onclick="toggleGroup('alergia_box', true)"> Sí</label>
+                    <label class="radio-item"><input type="radio" name="Salud_Alergia_Restriccion" value="No" checked onclick="toggleGroup('alergia_box', false)"> No</label>
+                </div>
+                <div id="alergia_box" class="conditional-group">
+                    <label>Especifique las alergias o restricciones:</label>
+                    <input type="text" name="Salud_AlergiaDetalle" placeholder="Ej: Alérgico al maní y la lactosa">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>¿Toma algún medicamento regular o tiene alguna condición médica?</label>
+                <div class="radio-group" style="flex-direction: row; gap: 20px;">
+                    <label class="radio-item"><input type="radio" name="Salud_Condicion_Med" value="Sí" onclick="toggleGroup('med_box', true)"> Sí</label>
+                    <label class="radio-item"><input type="radio" name="Salud_Condicion_Med" value="No" checked onclick="toggleGroup('med_box', false)"> No</label>
+                </div>
+                <div id="med_box" class="conditional-group">
+                    <label>Especifique condición médica o medicación:</label>
+                    <input type="text" name="Salud_MedDetalle" placeholder="Ej: Asma (usa inhalador si hay crisis)">
+                </div>
+            </div>
+
+            <div class="form-group"><label>En caso de emergencia médica, ¿qué acción debemos tomar? *</label><textarea name="Salud_EmergenciaAccion" rows="2" required placeholder="Ej: Llamar a los padres inmediatamente y llevar a centro médico si es grave."></textarea></div>
+            <div class="form-group"><label>Contacto alternativo de emergencia (Nombre, Parentesco y Teléfono) *</label><input type="text" name="Contacto_Emergencia_Completo" required placeholder="Ej: Carlos Rojas (Tío) - 987654321"></div>
+            <div class="form-group"><label>¿Hay algún alimento, actividad o situación especial que debamos evitar o recomendar?</label><textarea name="Salud_Evitar_Recomendacion" rows="2" placeholder="Opcional"></textarea></div>
+        </div>
+
+        <!-- PASO 4: CONOCIENDO AL NIÑO -->
+        <div class="step">
+            <h3>Paso 4: Perfil Emocional y Social del Niño(a)</h3>
+            <div class="form-group"><label>1. Cuéntanos sobre sus gustos (¿Cuáles son sus juegos, actividades, personajes o comidas favoritas?)</label><textarea name="Perfil_Gustos" rows="2" placeholder="Ej: Le encantan los Legos, dibujos animados y su comida favorita es el arroz con pollo."></textarea></div>
+            <div class="form-group"><label>2. ¿Qué situaciones suelen causarle temor, tristeza o frustración, y cómo reacciona o se calma?</label><textarea name="Perfil_Emociones_Negativas" rows="2" placeholder="Ej: Le asustan los ruidos fuertes. Cuando se frustra suele llorar, se calma si conversamos a solas con él."></textarea></div>
+            <div class="form-group"><label>3. ¿Cómo es su interacción social? (¿Prefiere jugar solo/grupo?, ¿hace amigos fácil?, ¿cómo se lleva con adultos/niños?)</label><textarea name="Perfil_Social" rows="2" placeholder="Ej: Hace amigos rápido, prefiere jugar en grupo. Es muy respetuoso con los adultos."></textarea></div>
+            <div class="form-group"><label>4. ¿Qué virtudes, talentos o áreas por reforzar observa en él/ella? (Y cómo reacciona a la corrección)</label><textarea name="Perfil_Desarrollo" rows="2" placeholder="Ej: Es muy generoso y servicial. Falta reforzar que preste más atención. Acepta bien la corrección si se le explica con amor."></textarea></div>
+            <div class="form-group"><label>5. ¿Presenta alguna necesidad educativa especial o sigue alguna terapia actualmente?</label><input type="text" name="Perfil_Necesidades_Terapias" placeholder="Ej: Recibe terapia de lenguaje una vez por semana / Ninguna"></div>
+        </div>
+
+        <!-- PASO 5: VIDA ESPIRITUAL Y CATECISMO -->
+        <div class="step">
+            <h3>Paso 5: Entorno Espiritual y Discipulado</h3>
+            <div class="form-group" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px;">
+                    <label>¿Asiste regular a la iglesia?</label>
+                    <select name="Esp_IglesiaRegular"><option value="Sí">Sí</option><option value="No">No</option></select>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <label>¿Tiene Biblia propia?</label>
+                    <select name="Esp_BibliaPropia"><option value="Sí">Sí</option><option value="No">No</option></select>
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px;">
+                    <label>Frecuencia de lectura bíblica en casa</label>
+                    <select name="Esp_LecturaCasa">
+                        <option value="Frecuentemente">Frecuentemente</option>
+                        <option value="A veces">A veces</option>
+                        <option value="Rara vez">Rara vez</option>
+                        <option value="Nunca">Nunca</option>
+                    </select>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <label>Frecuencia de oración familiar</label>
+                    <select name="Esp_OracionFamilia">
+                        <option value="Frecuentemente">Frecuentemente</option>
+                        <option value="A veces">A veces</option>
+                        <option value="Rara vez">Rara vez</option>
+                        <option value="Nunca">Nunca</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>¿Ha mostrado interés por aprender de Dios o la salvación? (¿Hace preguntas?)</label>
+                <div class="radio-group" style="flex-direction: row; gap: 20px;">
+                    <label class="radio-item"><input type="radio" name="Esp_Interes" value="Sí" onclick="toggleGroup('preguntas_box', true)"> Sí</label>
+                    <label class="radio-item"><input type="radio" name="Esp_Interes" value="No" checked onclick="toggleGroup('preguntas_box', false)"> No</label>
+                </div>
+                <div id="preguntas_box" class="conditional-group">
+                    <label>Cuéntanos brevemente qué dudas o preguntas suele hacer:</label>
+                    <input type="text" name="Esp_PreguntasDetalle" placeholder="Ej: Pregunta sobre cómo llegó Jesús al cielo o quién creó a Dios">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Marque los conceptos bíblicos que su hijo(a) ya comprende con claridad:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox" name="Cat_Conceptos" value="Dios es el Creador"> Dios es el Creador.</label>
+                    <label class="checkbox-item"><input type="checkbox" name="Cat_Conceptos" value="La Biblia es la Palabra de Dios"> La Biblia es la Palabra de Dios.</label>
+                    <label class="checkbox-item"><input type="checkbox" name="Cat_Conceptos" value="Todos somos pecadores"> Todos somos pecadores.</label>
+                    <label class="checkbox-item"><input type="checkbox" name="Cat_Conceptos" value="Jesús es el único Salvador"> Jesús es el único Salvador y nos salva por Gracia.</label>
+                </div>
+            </div>
+            <div class="form-group"><label>¿Qué temas espirituales o metas le gustaría que reforcemos este año?</label><input type="text" name="Cat_Metas_Temas" placeholder="Ej: El valor de la obediencia, memorizar más versículos"></div>
+        </div>
+
+        <!-- PASO 6: ORACIÓN, AUTORIZACIÓN Y RETROALIMENTACIÓN -->
+        <div class="step">
+            <h3>Paso 6: Motivos de Oración y Cierre</h3>
+            <div class="form-group"><label>¿Cómo podemos orar por su hijo(a) y por su familia este año? *</label><textarea name="Oracion_Motivos" rows="2" required placeholder="Ej: Por la salud de la familia y para que el niño desarrolle un corazón piadoso."></textarea></div>
+            
+            <div class="form-group">
+                <label>Autorización para uso de imágenes/videos en actividades del ministerio *</label>
+                <select name="Autoriza_Imagen" required>
+                    <option value="Sí">Sí, autorizo el uso general</option>
+                    <option value="Solo para grupos privados de la iglesia">Solo para grupos cerrados de comunicación de la iglesia</option>
+                    <option value="No">No autorizo uso de imágenes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Breve opinión/retroalimentación sobre Gracia Kids (Si es nuevo, puede dejar en blanco)</label>
+                <select name="Feedback_General" style="margin-bottom: 10px;">
+                    <option value="">¿Cómo califica la experiencia en el ministerio?</option>
+                    <option value="Excelente">Excelente, ha sido de gran bendición</option>
+                    <option value="Buena">Buena, cumple las expectativas</option>
+                    <option value="Regular">Regular, hay cosas por mejorar</option>
+                </select>
+                <textarea name="Feedback_Comentarios" rows="2" placeholder="Sugerencias, comentarios adicionales o aspectos a mejorar..."></textarea>
+            </div>
+
+            <div class="form-group" style="margin-top: 25px; background: #fffbeb; padding: 12px; border-radius: 6px; border: 1px solid #fef3c7;">
+                <label class="checkbox-item" style="font-weight: bold;">
+                    <input type="checkbox" name="Declaracion_Final" value="Sí, autorizo" required> Autorizo el uso de estos datos exclusivamente dentro del marco pastoral de Gracia Kids. *
+                </label>
+            </div>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="buttons-nav">
+            <button type="button" class="btn-prev" id="btnPrev" onclick="changeStep(-1)" disabled>Atrás</button>
+            <button type="button" class="btn-next" id="btnNext" onclick="changeStep(1)">Siguiente</button>
+        </div>
+    </form>
+
+    <!-- Pantalla de Éxito Final -->
+    <div id="success-screen" style="display: none; text-align: center; padding: 15px;">
+        <h2 style="color: var(--success);">¡Ficha Registrada con Éxito!</h2>
+        <p style="line-height: 1.5; color: #475569; font-size: 14px;">Muchas gracias por su tiempo. Sus respuestas se han guardado directamente en nuestra base de datos pastoral.</p>
+        <p style="line-height: 1.5; color: #475569; font-size: 14px;">Oramos para que el Señor use Gracia Kids para ayudar a su hijo(a) a conocer, amar y obedecer a Cristo.</p>
+        <div class="verse" style="background: var(--success-light); color: #065f46; border-left: none; text-align: center;">“Dejad a los niños venir a mí, y no se lo impidáis; porque de los tales es el reino de Dios.” — Marcos 10:14</div>
+    </div>
+</div>
+
+<script>
+    // REEMPLAZA ESTO CON TU URL GENERADA EN GOOGLE APPS SCRIPT
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzm3zYYjadfJml4Yh2MTltk7tN0fdXiERP1gcuVGQGrX3Ti39P4eokBGak6ttG6O2QjSA/exec"; 
+
+    let currentStep = 0;
+    const steps = document.querySelectorAll(".step");
+
+    function startSurvey() {
+        document.getElementById("intro-screen").style.display = "none";
+        document.getElementById("megaForm").style.display = "block";
+        updateProgress();
+    }
+
+    function toggleGroup(id, show) {
+        document.getElementById(id).style.display = show ? "block" : "none";
+    }
+
+    function checkEdu(select) {
+        const colegioBox = document.getElementById("colegio_box");
+        if(select.value.includes("Homeschool")) {
+            colegioBox.style.display = "none";
+        } else {
+            colegioBox.style.display = "block";
+        }
+    }
+
+    function changeStep(n) {
+        if (n === 1 && !validateStep()) return;
+
+        steps[currentStep].classList.remove("active");
+        currentStep += n;
+
+        if (currentStep >= steps.length) {
+            submitFormularioCompleto();
+            return;
+        }
+
+        steps[currentStep].classList.add("active");
+        updateProgress();
+    }
+
+    function validateStep() {
+        const inputs = steps[currentStep].querySelectorAll("input[required], select[required], textarea[required]");
+        for (let input of inputs) {
+            if (!input.checkValidity()) {
+                input.reportValidity();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function updateProgress() {
+        const percent = (currentStep / (steps.length - 1)) * 100;
+        document.getElementById("progressBar").style.width = percent + "%";
+        document.getElementById("stepCounter").innerText = `Paso ${currentStep + 1} de ${steps.length}`;
+        
+        document.getElementById("btnPrev").disabled = currentStep === 0;
+        
+        if (currentStep === steps.length - 1) {
+            document.getElementById("btnNext").innerText = "Finalizar y Guardar";
+            document.getElementById("btnNext").style.background = "var(--success)";
+            document.getElementById("btnNext").style.boxShadow = "0 4px 6px rgba(46, 213, 115, 0.2)";
+        } else {
+            document.getElementById("btnNext").innerText = "Siguiente";
+            document.getElementById("btnNext").style.background = "var(--primary)";
+            document.getElementById("btnNext").style.boxShadow = "0 4px 6px rgba(108, 92, 231, 0.2)";
+        }
+    }
+
+    async function submitFormularioCompleto() {
+        const btnNext = document.getElementById("btnNext");
+        btnNext.disabled = true;
+        btnNext.innerText = "Procesando...";
+
+        const form = document.getElementById("megaForm");
+        const formData = new FormData(form);
+        const jsonOutput = {};
+
+        formData.forEach((value, key) => {
+            if (jsonOutput[key]) {
+                if (!Array.isArray(jsonOutput[key])) {
+                    jsonOutput[key] = [jsonOutput[key]];
+                }
+                jsonOutput[key].push(value);
+            } else {
+                jsonOutput[key] = value;
+            }
+        });
+
+        try {
+            await fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(jsonOutput)
+            });
+
+            form.style.display = "none";
+            document.getElementById("success-screen").style.display = "block";
+            document.querySelector(".banner-container").style.display = "none"; 
+
+        } catch (error) {
+            alert("Hubo un error al guardar la ficha. Verifique su conexión.");
+            btnNext.disabled = false;
+            updateProgress();
+        }
+    }
+</script>
+</body>
+</html>
