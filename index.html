@@ -99,7 +99,7 @@
         <div class="header">
             <h1>FICHA INFORMATIVA</h1>
             <p style="color: #475569; line-height: 1.5; font-size: 14px;">Queridos padres: Damos gracias a Dios por permitirnos acompañar a sus hijos en su crecimiento espiritual. Deseamos conocerlos mejor para servirles con amor, enseñarles la Palabra de Dios y orar por sus familias.</p>
-            <p style="font-size: 12px; color: var(--text-muted);">Esta versión optimizada toma menos de 5 minutos en completarse. Toda la información es de uso estrictamente confidencial.</p>
+            <p style="font-size: 12px; color: var(--text-muted);">Toma menos de 5 minutos en completarse. Toda la información es de uso estrictamente confidencial.</p>
             <button onclick="startSurvey()" class="btn-next" style="margin-top: 15px; padding: 14px;">Comenzar Ficha</button>
         </div>
     </div>
@@ -129,14 +129,14 @@
             <div class="form-group"><label>Grado escolar o nivel *</label><input type="text" name="Nino_Grado" required placeholder="Ej: 1er Grado Primaria, Inicial 4 años"></div>
             
             <div class="form-group">
-                <label>¿Tiene hermanos en el ministerio?</label>
+                <label>¿Tiene hermanos en el ministerio Cuna, Kinder o Gracia Kids?</label>
                 <div class="radio-group" style="flex-direction: row; gap: 20px;">
                     <label class="radio-item"><input type="radio" name="Nino_Hermanos" value="Sí" onclick="toggleGroup('hermanos_box', true)"> Sí</label>
                     <label class="radio-item"><input type="radio" name="Nino_Hermanos" value="No" checked onclick="toggleGroup('hermanos_box', false)"> No</label>
                 </div>
                 <div id="hermanos_box" class="conditional-group">
-                    <label>Indique el nombre y edad de los hermanos:</label>
-                    <input type="text" name="Nino_HermanosDetalle" placeholder="Ej: Mateo (8) y Sofía (5)">
+                    <label>Indique el nombre, apellido, edad y ministerio de los hermanos:</label>
+                    <input type="text" name="Nino_HermanosDetalle" placeholder="Ej: Mateo Espinoza - 8 - Cuna y Sofía Paredes - 5 - Kids ">
                 </div>
             </div>
 
@@ -158,8 +158,9 @@
         <!-- PASO 2: PADRES Y CONTACTO -->
         <div class="step">
             <h3>Paso 2: Datos de los Padres y Contacto</h3>
-            <div class="form-group"><label>Nombre completo de la Madre y Teléfono *</label><input type="text" name="Madre_Info" required placeholder="Ej: María Rojas - 999888777"></div>
             <div class="form-group"><label>Nombre completo del Padre y Teléfono *</label><input type="text" name="Padre_Info" required placeholder="Ej: Juan Pérez - 999555444"></div>
+            <div class="form-group"><label>Nombre completo de la Madre y Teléfono *</label><input type="text" name="Madre_Info" required placeholder="Ej: María Rojas - 999888777"></div>
+            
             <div class="form-group"><label>Correo electrónico principal *</label><input type="email" name="Email" required></div>
             <div class="form-group"><label>Dirección de residencia completa (Incluir Distrito y Referencia) *</label><textarea name="Direccion_Completa" rows="2" required placeholder="Ej: Av. Principal 123, Dpto 402 - Chorrillos (Frente al parque)"></textarea></div>
             <div class="form-group"><label>¿Quiénes están autorizados normalmente para traer y recoger al niño(a)? *</label><input type="text" name="Recojo_Autorizados" required placeholder="Ej: Ambos padres / Abuela paterna (Elena Ramos)"></textarea></div>
